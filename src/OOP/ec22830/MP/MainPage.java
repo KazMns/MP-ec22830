@@ -1,2 +1,4 @@
-package OOP.ec22830.MP;public class MainPage {
+package OOP.ec22830.MP;
+
+public class MainPage {
 }
