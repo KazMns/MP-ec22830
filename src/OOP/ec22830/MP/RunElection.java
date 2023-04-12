@@ -1,10 +1,18 @@
 package OOP.ec22830.MP;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-import java.util.regex.Pattern;
+import java.util.List;
 
 public class RunElection extends Dropdown{
     private Random random = new Random();
@@ -16,10 +24,12 @@ public class RunElection extends Dropdown{
     private JButton addCandidateButton;
     private JTextArea textArea1;
     private JScrollPane ScrollableText;
+    private JButton barChartButton;
     private final Candidate[] all = getCandidateArray();
     private List<Candidate> candidates = new ArrayList<>();
 
     private final List<Candidate> defaultSet = getCandidateList(getCandidateArray());
+    private Map<Candidate, Integer> votes = new HashMap<>();
     private List<Candidate> UsedList = new ArrayList<>();
 
     private int counter=0;
@@ -113,6 +123,27 @@ public class RunElection extends Dropdown{
                 }
             }
         });
+        barChartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultCategoryDataset DCT = new DefaultCategoryDataset();
+
+                for (Map.Entry<Candidate, Integer> entry : votes.entrySet()) {
+                    Candidate candidate = entry.getKey();
+                    int voteCount = entry.getValue();
+
+                    DCT.setValue(voteCount, "Voters", candidate.getName());
+                }
+
+                JFreeChart chart = ChartFactory.createBarChart("Vote", "Vote", "Names", DCT, PlotOrientation.VERTICAL, false, true, false);
+                CategoryPlot p = chart.getCategoryPlot();
+                p.setRangeGridlinePaint(Color.black);
+                ChartFrame cFrame = new ChartFrame("Bar Chart for votes", chart);
+                cFrame.setVisible(true);
+                cFrame.setSize(450, 350);
+
+            }
+        });
     }
 
     public void printCandidates(List<Candidate> li){
@@ -173,29 +204,28 @@ public class RunElection extends Dropdown{
         }
 
         // Initialize a map to keep track of each candidate's vote count
-        Map<Candidate, Integer> voteCounts = new HashMap<>();
         for (Candidate candidate : UsedList) {
-            voteCounts.put(candidate, 0);
+            votes.put(candidate, 0);
         }
 
         // Simulate the election
         int numVoters = nb; // Change this to however many voters you want to simulate
         for (int i = 0; i < numVoters; i++) {
             Candidate voterChoice = UsedList.get(random.nextInt(UsedList.size()));
-            voteCounts.put(voterChoice, voteCounts.get(voterChoice) + 1);
+            votes.put(voterChoice, votes.get(voterChoice) + 1);
         }
 
         // Print the election results
         textArea1.append("Election Results:\n");
         for (Candidate candidate : UsedList) {
-            textArea1.append(candidate.getName() + ": " + voteCounts.get(candidate) + " votes"+"\n");
+            textArea1.append(candidate.getName() + ": " + votes.get(candidate) + " votes"+"\n");
         }
 
         // Determine the winner(s) of the election
         List<Candidate> winners = new ArrayList<>();
-        int maxVotes = Collections.max(voteCounts.values());
+        int maxVotes = Collections.max(votes.values());
         for (Candidate candidate : UsedList) {
-            if (voteCounts.get(candidate) == maxVotes) {
+            if (votes.get(candidate) == maxVotes) {
                 winners.add(candidate);
             }
         }
@@ -217,10 +247,9 @@ public class RunElection extends Dropdown{
         if (candidates.size() != 0) {
             UsedList = candidates;
         }
+
         UsedList = addRandomCandidates(UsedList, nb);
         printCandidates(UsedList);
-
-        Map<Candidate, Integer> votes = new HashMap<>();
 
         for (Candidate candidate : UsedList) {
             Candidate vote = candidate.vote(convertListToArray(defaultSet));
