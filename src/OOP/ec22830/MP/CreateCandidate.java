@@ -10,12 +10,12 @@ public class CreateCandidate extends Candidate{
     }
     @Override
     public Candidate vote(Candidate[] candidates) {
-        return null;
+        return this;
     }
 
     @Override
     public Candidate selectWinner(Candidate[] votes) {
-        return null;
+        return this;
     }
 
     @Override

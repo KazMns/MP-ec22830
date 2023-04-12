@@ -44,6 +44,7 @@ public class RunElection extends Dropdown{
         frame.add(Main);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 
+
         runElectionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -54,13 +55,13 @@ public class RunElection extends Dropdown{
                     }
                     int getValue=0;
 
-
                     try{
                         getValue = Integer.parseInt(textField1.getText());
                     } catch(IllegalArgumentException s) {
                         JOptionPane.showMessageDialog(null,
                                 "Error you did not enter a number, please try again.",
                                     "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
 
                     String[] buttons = { "Random Election", "Normal Election", "Close"};
@@ -132,6 +133,7 @@ public class RunElection extends Dropdown{
                     Candidate candidate = entry.getKey();
                     int voteCount = entry.getValue();
 
+                    assert candidate.getName()!=null;
                     DCT.setValue(voteCount, "Voters", candidate.getName());
                 }
 
@@ -195,6 +197,7 @@ public class RunElection extends Dropdown{
             UsedList = candidates;
         }
         UsedList = addRandomCandidates(UsedList, nb);
+        printCandidates(UsedList);
 
         textArea1.setText("");
         // Check that there are at least two candidates
