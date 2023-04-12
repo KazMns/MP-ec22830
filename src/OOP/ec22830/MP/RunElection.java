@@ -32,7 +32,7 @@ public class RunElection extends Dropdown{
         frame.setVisible(true);
         frame.setSize(700,300);
         frame.add(Main);
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 
         runElectionButton.addActionListener(new ActionListener() {
             @Override
@@ -45,25 +45,20 @@ public class RunElection extends Dropdown{
                     int getValue=0;
 
 
-                        try{
-                            getValue = Integer.parseInt(textField1.getText());
-                        } catch(IllegalArgumentException s) {
-                            JOptionPane.showMessageDialog(null,
-                                    "Error you did not enter a number, please try again.",
+                    try{
+                        getValue = Integer.parseInt(textField1.getText());
+                    } catch(IllegalArgumentException s) {
+                        JOptionPane.showMessageDialog(null,
+                                "Error you did not enter a number, please try again.",
                                     "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                        finally {
-                            JOptionPane.getRootFrame().dispose();
-                        }
-
-
+                    }
 
                     String[] buttons = { "Random Election", "Normal Election", "Close"};
                     int returnValue = JOptionPane.showOptionDialog(null, "Choose Election", "Choose Election",
                             JOptionPane.OK_CANCEL_OPTION, 0, null, buttons, buttons);
 
                     if (returnValue==0){
-                        RandomElection(getValue);
+                        RandomElection(candidates, getValue);
                     }
 
                     else if(returnValue ==1){
@@ -160,10 +155,63 @@ public class RunElection extends Dropdown{
         UsedList = checkList(UsedList);
         printCandidates(UsedList);
 
-
     }
 
-    public void NormalElection(int nb){
+    public void RandomElection(List<Candidate> candidates, int nb){
+        List<Candidate> UsedList = new ArrayList<>();
+
+        if (candidates.size() != 0) {
+            UsedList = candidates;
+        }
+        UsedList = addRandomCandidates(UsedList, nb);
+
+        textArea1.setText("");
+        // Check that there are at least two candidates
+        if (UsedList.size() < 2) {
+            System.out.println("Error: Need at least two candidates to run an election.");
+            return;
+        }
+
+        // Initialize a map to keep track of each candidate's vote count
+        Map<Candidate, Integer> voteCounts = new HashMap<>();
+        for (Candidate candidate : UsedList) {
+            voteCounts.put(candidate, 0);
+        }
+
+        // Simulate the election
+        int numVoters = nb; // Change this to however many voters you want to simulate
+        for (int i = 0; i < numVoters; i++) {
+            Candidate voterChoice = UsedList.get(random.nextInt(UsedList.size()));
+            voteCounts.put(voterChoice, voteCounts.get(voterChoice) + 1);
+        }
+
+        // Print the election results
+        textArea1.append("Election Results:\n");
+        for (Candidate candidate : UsedList) {
+            textArea1.append(candidate.getName() + ": " + voteCounts.get(candidate) + " votes"+"\n");
+        }
+
+        // Determine the winner(s) of the election
+        List<Candidate> winners = new ArrayList<>();
+        int maxVotes = Collections.max(voteCounts.values());
+        for (Candidate candidate : UsedList) {
+            if (voteCounts.get(candidate) == maxVotes) {
+                winners.add(candidate);
+            }
+        }
+
+        // Print the winner(s) of the election
+        if (winners.size() == 1) {
+            textArea1.append("Winner: " + winners.get(0).getName()+"\n");
+        } else {
+            textArea1.append("Tie between the following candidates:\n");
+            for (Candidate winner : winners) {
+                textArea1.append(winner.getName()+"\n");
+            }
+        }
+    }
+
+    public void NormalElection(int nb) {
         List<Candidate> UsedList = new ArrayList<>();
 
         if (candidates.size() != 0) {
@@ -172,6 +220,40 @@ public class RunElection extends Dropdown{
         UsedList = addRandomCandidates(UsedList, nb);
         printCandidates(UsedList);
 
+        Map<Candidate, Integer> votes = new HashMap<>();
+
+        for (Candidate candidate : UsedList) {
+            Candidate vote = candidate.vote(convertListToArray(defaultSet));
+            Integer count = votes.get(vote);
+            if (count == null) {
+                count = 0;
+            }
+            votes.put(vote, count + 1);
+        }
+
+        Candidate winner = null;
+        int maxVotes = 0;
+
+        for (Map.Entry<Candidate, Integer> entry : votes.entrySet()) {
+            Candidate candidate = entry.getKey();
+            int voteCount = entry.getValue();
+
+            if (voteCount > maxVotes) {
+                winner = candidate;
+                maxVotes = voteCount;
+            }
+        }
+
+        assert winner != null;
+        textArea1.append("Winner : "+winner.getName()+" "+maxVotes);
+    }
+
+    public Candidate[] convertListToArray(List<Candidate> candidateList) {
+        Candidate[] candidateArray = new Candidate[candidateList.size()];
+        for (int i = 0; i < candidateList.size(); i++) {
+            candidateArray[i] = candidateList.get(i);
+        }
+        return candidateArray;
     }
 
 
