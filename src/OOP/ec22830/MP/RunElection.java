@@ -25,6 +25,7 @@ public class RunElection extends Dropdown{
     private JTextArea textArea1;
     private JScrollPane ScrollableText;
     private JButton barChartButton;
+    private JButton button1;
     private final Candidate[] all = getCandidateArray();
     private List<Candidate> candidates = new ArrayList<>();
 
@@ -143,6 +144,12 @@ public class RunElection extends Dropdown{
                 ChartFrame cFrame = new ChartFrame("Bar Chart for votes", chart);
                 cFrame.setVisible(true);
                 cFrame.setSize(450, 350);
+
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
             }
         });

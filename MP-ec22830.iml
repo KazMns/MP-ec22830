@@ -8,15 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/swingx-all-1.6.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="swingx" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -65,6 +57,7 @@
           <root url="file://$USER_HOME$/OneDrive/Bureau/jfreechart-1.5.2/src/main/java" />
           <root url="file://$USER_HOME$/OneDrive/Bureau/jfreechart-1.5.2/src/test/java" />
         </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/OneDrive/Bureau" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/OneDrive/Bureau" recursive="false" />
       </library>
     </orderEntry>
