@@ -5,14 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPage{
+public class MP_ec22830 {
     private JLabel Icon;
     private JPanel panel;
     private JButton runElectionButton;
     private JButton EXIT;
     private JButton Credits;
 
-    public MainPage() {
+    public MP_ec22830() {
 
         runElectionButton.addActionListener(new ActionListener() {
             @Override
@@ -47,7 +47,7 @@ public class MainPage{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MainPage().makeUI();
+                new MP_ec22830().makeUI();
             }
         });
     }
@@ -74,7 +74,7 @@ public class MainPage{
             }
         };
 
-        frame.setContentPane(new MainPage().panel);
+        frame.setContentPane(new MP_ec22830().panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
         frame.setMaximumSize(new Dimension(500, 500));
