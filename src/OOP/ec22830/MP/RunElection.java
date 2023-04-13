@@ -25,17 +25,12 @@ public class RunElection extends Dropdown{
     private JTextArea textArea1;
     private JScrollPane ScrollableText;
     private JButton barChartButton;
-    private JButton button1;
-    private final Candidate[] all = getCandidateArray();
+    private JButton clearButton;
     private List<Candidate> candidates = new ArrayList<>();
-
     private final List<Candidate> defaultSet = getCandidateList(getCandidateArray());
     private Map<Candidate, Integer> votes = new HashMap<>();
     private List<Candidate> UsedList = new ArrayList<>();
-
-    private int counter=0;
-
-
+    private int counter = 0;
 
     public RunElection() {
         JFrame frame = new JFrame();
@@ -45,15 +40,17 @@ public class RunElection extends Dropdown{
         frame.add(Main);
         frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
 
-
+        textArea1.setEditable(false);
         runElectionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()==runElectionButton){
-                    counter++;
-                    if (counter>1){
-                        UsedList.clear();
+                    if (counter>=1){
+                        textArea1.setText("");
                     }
+
+                    System.out.println(counter);
+                    counter++;
                     int getValue=0;
 
                     try{
@@ -147,6 +144,15 @@ public class RunElection extends Dropdown{
 
             }
         });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                textField1.setText("");
+                textArea1.setText("");
+                UsedList.clear();
+                candidates.clear();
+            }
+        });
     }
 
     public void printCandidates(List<Candidate> li){
@@ -180,19 +186,8 @@ public class RunElection extends Dropdown{
         return li;
     }
 
-    public void RandomElection(int nb){
-
-        if (candidates.size() != 0) {
-            UsedList = candidates;
-        }
-        UsedList = addRandomCandidates(UsedList, nb);
-        UsedList = checkList(UsedList);
-        printCandidates(UsedList);
-
-    }
-
     public void RandomElection(List<Candidate> candidates, int nb){
-        List<Candidate> UsedList = new ArrayList<>();
+        UsedList.clear();
 
         if (candidates.size() != 0) {
             UsedList = candidates;
@@ -201,11 +196,6 @@ public class RunElection extends Dropdown{
         printCandidates(UsedList);
 
         textArea1.setText("");
-        // Check that there are at least two candidates
-        if (UsedList.size() < 2) {
-            System.out.println("Error: Need at least two candidates to run an election.");
-            return;
-        }
 
         // Initialize a map to keep track of each candidate's vote count
         for (Candidate candidate : UsedList) {
@@ -246,7 +236,7 @@ public class RunElection extends Dropdown{
     }
 
     public void NormalElection(int nb) {
-        List<Candidate> UsedList = new ArrayList<>();
+        UsedList.clear();
 
         if (candidates.size() != 0) {
             UsedList = candidates;
