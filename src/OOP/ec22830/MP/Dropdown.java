@@ -3,8 +3,6 @@ package OOP.ec22830.MP;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Dropdown {
     public JComboBox comboBox1;
