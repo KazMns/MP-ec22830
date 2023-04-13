@@ -147,12 +147,6 @@ public class RunElection extends Dropdown{
 
             }
         });
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
     public void printCandidates(List<Candidate> li){
