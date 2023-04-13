@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2b7d586-dced-40fb-bab9-cec6ed842338" name="Changes" comment="Final Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jcommon_1_0_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/servlet.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/swtgraphics2d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MP-ec22830.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MP-ec22830.iml" afterDir="false" />
     </list>
@@ -143,7 +141,21 @@
       <option name="project" value="LOCAL" />
       <updated>1681379551372</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Final Commit">
+      <created>1681381927484</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1681381927484</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Final Commit">
+      <created>1681381995909</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1681381995909</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

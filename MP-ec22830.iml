@@ -9,16 +9,105 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="jcommon-1.0.23" level="project" />
-    <orderEntry type="library" exported="" name="jfreechart-1.0.19-experimental" level="project" />
-    <orderEntry type="library" exported="" name="jfreechart-1.0.19-swt" level="project" />
-    <orderEntry type="library" exported="" name="jfreechart-1.0.19" level="project" />
-    <orderEntry type="library" exported="" name="jfreesvg-2.0" level="project" />
-    <orderEntry type="library" exported="" name="junit-4.11" level="project" />
-    <orderEntry type="library" exported="" name="orsoncharts-1.4-eval-nofx" level="project" />
-    <orderEntry type="library" exported="" name="orsonpdf-1.6-eval" level="project" />
-    <orderEntry type="library" exported="" name="servlet" level="project" />
-    <orderEntry type="library" exported="" name="swingx-all-1.6.4" level="project" />
-    <orderEntry type="library" exported="" name="swtgraphics2d" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library type="repository">
+        <properties maven-id="org.jfree:jcommon:1.0.23" />
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/org/jfree/jcommon/1.0.23/jcommon-1.0.23.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/jfreechart-1.0.19-experimental.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/jfreechart-1.0.19-swt.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/jfreechart-1.0.19.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/jfreesvg-2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/junit-4.11.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/orsoncharts-1.4-eval-nofx.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/orsonpdf-1.6-eval.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/servlet.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/swingx-all-1.6.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/OneDrive/Bureau/test/swtgraphics2d.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
