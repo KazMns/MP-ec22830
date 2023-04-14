@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class MP_ec22830 {
     private JLabel Icon;
@@ -26,15 +27,51 @@ public class MP_ec22830 {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()== EXIT){
-                    System.exit(0);
+                    int n = JOptionPane.showConfirmDialog(
+                            null,
+                            "Would you like to exit the software?",
+                            "Exit Software",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if(n==0){
+                        System.exit(0);
+                    }
+                    else {
+                        JOptionPane.getRootFrame().dispose();
+                    }
                 }
             }
         });
         Credits.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "This App was written by Kazan Muniesa",
-                        "Credits", JOptionPane.INFORMATION_MESSAGE);
+
+
+                String[] buttons = { "Linkedin", "Github", "My university"};
+                int returnValue = JOptionPane.showOptionDialog(null, "This app was written by Kazan Muniesa", "Credits",
+                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, buttons, buttons);
+
+                if(returnValue==0){
+                    try {
+                        Desktop.getDesktop().browse(new URL("https://www.linkedin.com/in/kazan-muniesa-66893b193/").toURI());
+                    } catch (Exception ignored) {
+                    }
+                }
+                else if(returnValue==1){
+                    try {
+                        Desktop.getDesktop().browse(new URL("https://github.com/KazMns").toURI());
+                    } catch (Exception ignored) {
+                    }
+                }
+                else if (returnValue==2){
+                    try {
+                        Desktop.getDesktop().browse(new URL("https://www.qmul.ac.uk/").toURI());
+                    } catch (Exception ignored) {
+                    }
+                }
+                else {
+                    JOptionPane.getRootFrame().dispose();
+                }
             }
         });
     }
@@ -55,7 +92,6 @@ public class MP_ec22830 {
     public void makeUI() {
         final JFrame frame = new JFrame("Run Election App") {
 
-            //Solution to set a Maximum size for the window
             @Override
             public void paint(Graphics g) {
                 Dimension d = getSize();

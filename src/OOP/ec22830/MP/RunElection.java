@@ -45,11 +45,13 @@ public class RunElection extends Dropdown{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()==runElectionButton){
+
                     if (counter>=1){
                         textArea1.setText("");
+                        UsedList.clear();
+                        votes.clear();
                     }
 
-                    System.out.println(counter);
                     counter++;
                     int getValue=0;
 
@@ -59,6 +61,7 @@ public class RunElection extends Dropdown{
                         JOptionPane.showMessageDialog(null,
                                 "Error you did not enter a number, please try again.",
                                     "Error", JOptionPane.ERROR_MESSAGE);
+                        counter--;
                         return;
                     }
 
@@ -84,7 +87,18 @@ public class RunElection extends Dropdown{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource()==EXITButton){
-                    System. exit(0);
+                    int n = JOptionPane.showConfirmDialog(
+                            null,
+                            "Would you like to exit the software?",
+                            "Exit Software",
+                            JOptionPane.YES_NO_OPTION);
+
+                    if(n==0){
+                        System.exit(0);
+                    }
+                    else {
+                        JOptionPane.getRootFrame().dispose();
+                    }
                 }
             }
         });
@@ -100,7 +114,6 @@ public class RunElection extends Dropdown{
                             "Please Choose Candidate", JOptionPane.OK_CANCEL_OPTION);
                     String s = (String) comboBox1.getSelectedItem();
                     candidates.add(getByUsername(s, getCandidateArray()));
-                    System.out.println(candidates);
                 }
                 else if (returnValue==1) {
                     JTextField xField = new JTextField(5);
@@ -115,9 +128,14 @@ public class RunElection extends Dropdown{
 
                     int result = JOptionPane.showConfirmDialog(null, myPanel,
                             "Please Enter Name and Slogan", JOptionPane.OK_CANCEL_OPTION);
-                    if (result == JOptionPane.OK_OPTION) {
+
+                    if (xField.getText().isEmpty()||yField.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null,
+                                "Error you did not enter a valid name, please try again.",
+                                "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else if (result == JOptionPane.OK_OPTION) {
                         candidates.add(new CreateCandidate(xField.getText(), yField.getText()));
-                        System.out.println(candidates);
                     }
                 }
             }
@@ -147,10 +165,20 @@ public class RunElection extends Dropdown{
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                textField1.setText("");
-                textArea1.setText("");
-                UsedList.clear();
-                candidates.clear();
+                int n = JOptionPane.showConfirmDialog(
+                        null,
+                        "Would you like to clear the page? (The Candidate list will only be reset when running a new election)",
+                        "Clear Page",
+                        JOptionPane.YES_NO_OPTION);
+
+                if(n==0){
+                    textField1.setText("");
+                    textArea1.setText("");
+                }
+                else {
+                    JOptionPane.getRootFrame().dispose();
+                }
+
             }
         });
     }
@@ -173,23 +201,18 @@ public class RunElection extends Dropdown{
 
         return li;
     }
-
-    public boolean proper(Candidate p){
-        return !p.getName().contains("Name ") && !p.getName().contains("name ");
-    }
-
-    public List<Candidate> checkList(List<Candidate> li){
-        for (int i=0; i<li.size(); i++){
-            if (!proper(li.get(i))) li.remove(li.get(i));
-        }
-
-        return li;
-    }
-
     public void RandomElection(List<Candidate> candidates, int nb){
-        UsedList.clear();
-
         if (candidates.size() != 0) {
+            int n = JOptionPane.showConfirmDialog(
+                    null,
+                    "Would you like to reset the specific candidate list?",
+                    "Specific candidate list",
+                    JOptionPane.YES_NO_OPTION);
+
+            if(n==0){
+                candidates.clear();
+            }
+
             UsedList = candidates;
         }
         UsedList = addRandomCandidates(UsedList, nb);
@@ -236,10 +259,19 @@ public class RunElection extends Dropdown{
     }
 
     public void NormalElection(int nb) {
-        UsedList.clear();
-
         if (candidates.size() != 0) {
-            UsedList = candidates;
+            int n = JOptionPane.showConfirmDialog(
+                    null,
+                    "Would you like to reset the specific candidate list?",
+                    "Specific candidate list",
+                    JOptionPane.YES_NO_OPTION);
+
+            if(n==0){
+                candidates.clear();
+            }
+            else{
+                UsedList = candidates;
+            }
         }
 
         UsedList = addRandomCandidates(UsedList, nb);
